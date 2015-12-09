@@ -1,5 +1,7 @@
 import csv
 import json
+import datetime
+
 from urllib2 import urlopen
 
 from country_iso_code import *
@@ -11,6 +13,23 @@ with open('user.csv', 'rb') as f:
 
 creation_date = [i[5] for i in raw_discourse_data]
 ip_address = [i[17] for i in raw_discourse_data]
+
+
+
+# Get number of new members per month
+account_creation_date = [datetime.datetime.strptime(d, "%Y-%m-%d %H:%M:%S UTC") for d in filter(None,creation_date)]
+
+community_expansion = {}
+
+for d in account_creation_date:
+
+    period = datetime.datetime.strftime(d ,'%Y-%m')
+
+    if period in community_expansion:
+        community_expansion[period] += 1
+    else:
+         community_expansion[period] = 1
+
 
 member_countries = {}
 
