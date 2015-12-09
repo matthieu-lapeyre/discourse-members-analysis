@@ -94,5 +94,7 @@ with open('members.csv', 'w') as f:
     [f.write('{0},{1}\n'.format(key, value)) for key, value in member_countries.items()]
     f.write('\nContinent, number of users\n')
     [f.write('{0},{1}\n'.format(key, value)) for key, value in members_by_continent.items()]
+    f.write('\nYear-Month, number of new members\n')
+    [f.write('{0},{1}\n'.format(key, value)) for key, value in community_expansion.items()]
 
 print 'Done !'
